@@ -16,7 +16,7 @@ namespace UserBugredApi.Helpers
             _client = new RestClient(requestUrl);
         }
 
-        public IRestResponse SendGetResponse(Dictionary<string, string> parameters)
+        public IRestResponse SendGetRequest(Dictionary<string, string> parameters)
         {
             RestRequest request = new RestRequest(Method.GET);
             request.AddHeader("content-type", "application/json");
@@ -31,17 +31,10 @@ namespace UserBugredApi.Helpers
             IRestResponse response = _client.Execute(request);
             return response;
         }
-        public IRestResponse SendPostResponse(object postBody)
+        public IRestResponse SendPostRequest(object postBody)
         {
             RestRequest request = new RestRequest(Method.POST);
             request.AddHeader("content-type", "application/json");
-            //request.AddParameter("Authorization", "Bearer fgfdgfdgfdg");
-
-            //foreach (var param in parameters)
-            //{
-            //    request.AddParameter(param.Key, param.Value);
-            //}
-
             request.AddJsonBody(postBody);
 
             IRestResponse response = _client.Execute(request);

@@ -8,14 +8,15 @@ namespace UserBugredApi.Helpers
 {
     static class Utils
     {
+        static public Random rnd = new Random();
         static public string GetNameRandom()
         {
-            return "GomoTrio" + DateTime.Now.ToString("hhmmssMMddyy");
+            return "GomoTrio" + rnd.Next(11, 99) + rnd.Next(11, 99) + DateTime.Now.ToString("hhmmssMMddyy");
         }
 
         static public string GetEmailRandom()
         {
-            return DateTime.Now.ToString("hhmmssMMddyy") + "@gomotrio.com";
+            return DateTime.Now.ToString("hhmmssMMddyy") + rnd.Next(11, 99) + rnd.Next(11, 99) + "@gomotrio.com";
         }
         static public string GetPassword()
         {
