@@ -7,18 +7,18 @@ using System.Threading.Tasks;
 
 namespace UserBugredApi.Models
 {
-    public class CreateCompany
+    class CreateCompanyInput
     {
         [JsonProperty("company_name")]
-        public string company_name { get; set; }
+        public string CompanyName { get; set; }
 
         [JsonProperty("company_type")]
-        public string company_type { get; set; }
+        public string CompanyType { get; set; }
 
         [JsonProperty("company_users")]
-        public List<string> company_users { get; set; }
+        public List<string> CompanyUsers { get; set; }
 
         [JsonProperty("email_owner")]
-        public string email_owner { get; set; }
+        public string EmailOwner { get; set; }
     }
 }
