@@ -31,7 +31,7 @@ namespace UserBugredApi.Helpers
             IRestResponse response = _client.Execute(request);
             return response;
         }
-        public IRestResponse SendPostRequest(object postBody)
+        public IRestResponse SendPostRequest(string postBody)
         {
             RestRequest request = new RestRequest(Method.POST);
             request.AddHeader("content-type", "application/json");
