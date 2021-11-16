@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using NUnit.Framework;
 using RestSharp;
@@ -25,10 +25,12 @@ namespace UserBugredApi
         public void AddAvatarTest()
         {
             string email = "test@tset.st4";
-            string avatar = "H:/!VisualStrudio/ApiRestLection/BugredApiTest/avatar.png";
+            string avatar = @"E:\!VisualStrudio\ApiRestLection\BugredApiTest\avatar.png";
 
             IRestResponse response = requestUrl.AddAvatar(email,avatar);
+            JObject json = JObject.Parse(response.Content);
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
+            Assert.AreEqual("ok", json["status"]?.ToString());
         }
     }
 }
