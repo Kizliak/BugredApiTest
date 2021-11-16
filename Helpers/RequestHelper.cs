@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json.Linq;
+using Newtonsoft.Json.Linq;
 using RestSharp;
 using System;
 using System.Collections.Generic;
@@ -31,12 +31,11 @@ namespace UserBugredApi.Helpers
         }
         public IRestResponse AddAvatar(string email, string avatar)
         {
-            RestRequest request = new RestRequest(Method.GET);
+            RestRequest request = new RestRequest(Method.POST);
             request.AddHeader("content-type", "application/json")
                 .AddHeader("Content-Type", "multipart/form-data")
                 .AddParameter("email", email)
-                .AddFile("avatar", avatar)
-                .AddParameter("multipart/form-data", "avatar", ParameterType.RequestBody);
+                .AddFile("avatar", avatar);
 
             IRestResponse response = _client.Execute(request);
             return response;
