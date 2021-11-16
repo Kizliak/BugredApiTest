@@ -9,7 +9,7 @@ using System.Threading;
 using UserBugredApi.Helpers;
 using UserBugredApi.Models;
 
-namespace UserBugredApi.ApiTests
+namespace UserBugredApi
 {
     class CreateUserWithTasks
     {
@@ -33,7 +33,7 @@ namespace UserBugredApi.ApiTests
                     new Task { Title = "Тестовая таска1 " + Utils.GetNameRandom(), Description = "Тестовое описание таски 1 " + Utils.GetNameRandom() },
                     new Task { Title = "Тестовая таска2 " + Utils.GetNameRandom(), Description = "Тестовое описание таски 2 " + Utils.GetNameRandom() }
                 },
-                Companies = new List<int> {19, 20 },
+                Companies = new List<int> { 19, 20 },
                 Hobby = "Стрельба из лука, Настолки",
                 Adres = "адрес 1",
                 Name1 = "Тестовый, ясен пень",
@@ -51,20 +51,22 @@ namespace UserBugredApi.ApiTests
                 Birthday = "01.01.1900",
                 Date_start = "11.11.2000"
             };
+            Thread.Sleep(500);
 
             var postDataJson = JsonConvert.SerializeObject(createUserWithTasksInput);
             IRestResponse response = requestUrl.SendPostRequest(postDataJson);
-            CreateUserWithTasksOutput companyOutput = JsonConvert.DeserializeObject<CreateUserWithTasksOutput>(response.Content);
+            CreateUserWithTasksOutput createUserWithTasksOutput = JsonConvert.DeserializeObject<CreateUserWithTasksOutput>(response.Content);
 
-            Assert.AreEqual(expected: null, actual: companyOutput.type);
-            Assert.AreEqual(createUserWithTasksInput.Email, companyOutput.email);
-            //foreach (var task in createUserWithTasksInput.Tasks)
-            //{
-            //    Assert.Contains(expected: task.Title, actual: companyOutput.tasks);
-            //}
+            Assert.AreEqual(expected: null, actual: createUserWithTasksOutput.type); // если ошибка то будет поле type с текстом ошибки
+            Assert.AreEqual(createUserWithTasksInput.Email, createUserWithTasksOutput.email);
+
+            for (int i = 0; i < createUserWithTasksInput.Tasks.Count - 1; i++)
+            {
+                Assert.AreEqual(createUserWithTasksInput.Tasks[i].Title, createUserWithTasksOutput.tasks[i].name);
+            }
             
-            Assert.AreEqual(createUserWithTasksInput.Name, companyOutput.name);
-            Assert.AreEqual(createUserWithTasksInput.Name1, companyOutput.name1);
+            Assert.AreEqual(createUserWithTasksInput.Name, createUserWithTasksOutput.name);
+            Assert.AreEqual(createUserWithTasksInput.Name1, createUserWithTasksOutput.name1);
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
         }
     }

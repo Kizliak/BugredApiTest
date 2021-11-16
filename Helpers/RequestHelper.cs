@@ -20,13 +20,23 @@ namespace UserBugredApi.Helpers
         {
             RestRequest request = new RestRequest(Method.GET);
             request.AddHeader("content-type", "application/json");
-            request.AddParameter("email", "dfdsfdsfdsf");
-            request.AddParameter("password", "dgfhdhfj@dfhj.com");
 
             foreach (var param in parameters)
             {
                 request.AddParameter(param.Key, param.Value);
             }
+
+            IRestResponse response = _client.Execute(request);
+            return response;
+        }
+        public IRestResponse AddAvatar(string email, string avatar)
+        {
+            RestRequest request = new RestRequest(Method.GET);
+            request.AddHeader("content-type", "application/json")
+                .AddHeader("Content-Type", "multipart/form-data")
+                .AddParameter("email", email)
+                .AddFile("avatar", avatar)
+                .AddParameter("multipart/form-data", "avatar", ParameterType.RequestBody);
 
             IRestResponse response = _client.Execute(request);
             return response;
