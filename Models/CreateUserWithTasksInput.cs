@@ -7,66 +7,75 @@ using System.Threading.Tasks;
 
 namespace UserBugredApi.Models
 {
-    public class CreateUser
+    class CreateUserWithTasksInput
     {
         [JsonProperty("email")]
-        public string email;
+        public string Email;
 
         [JsonProperty("name")]
-        public string name;
+        public string Name;
 
         [JsonProperty("tasks")]
-        List<string> tasks;
+        public List<Task> Tasks;
 
         [JsonProperty("companies")]
-        List<string> companies;
+        public List<int> Companies;
 
         [JsonProperty("hobby")]
-        public string hobby;
+        public string Hobby;
 
         [JsonProperty("adres")]
-        public string adres;
+        public string Adres;
 
         [JsonProperty("name1")]
-        public string name1;
+        public string Name1;
 
         [JsonProperty("surname1")]
-        public string surname1;
+        public string Surname1;
 
         [JsonProperty("fathername1")]
-        public string fathername1;
+        public string Fathername1;
 
         [JsonProperty("cat")]
-        public string cat;
+        public string Cat;
 
         [JsonProperty("dog")]
-        public string dog;
+        public string Dog;
 
         [JsonProperty("parrot")]
-        public string parrot;
+        public string Parrot;
 
         [JsonProperty("cavy")]
-        public string cavy;
+        public string Cavy;
 
         [JsonProperty("hamster")]
-        public string hamster;
+        public string Hamster;
 
         [JsonProperty("squirrel")]
-        public string squirrel;
+        public string Squirrel;
 
         [JsonProperty("phone")]
-        public string phone;
+        public string Phone;
 
         [JsonProperty("inn")]
-        public string inn;
+        public string Inn;
 
         [JsonProperty("gender")]
-        public string gender;
+        public string Gender;
 
         [JsonProperty("birthday")]
-        public string birthday;
+        public string Birthday;
 
         [JsonProperty("date_start")]
-        public string date_start;
+        public string Date_start;
+    }
+
+    public class Task
+    {
+        [JsonProperty("title")]
+        public string Title;
+
+        [JsonProperty("description")]
+        public string Description;
     }
 }
